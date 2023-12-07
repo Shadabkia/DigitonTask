@@ -7,24 +7,45 @@ plugins {
     id 'kotlin-parcelize'
 }
 
+ext.versionMajor = 1
+ext.versionMinor = 2
+ext.versionPatch = 0
+ext.versionClassifier = null
+ext.isSnapshot = true
+ext.minimumSdkVersion = 21
+
 android {
     namespace 'com.digitoon.task'
     compileSdk 34
 
+    signingConfigs {
+        release {
+//
+        }
+    }
+
     defaultConfig {
         applicationId "com.digitoon.task"
-        minSdk 21
+        minSdk project.ext.minimumSdkVersion
         targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        versionCode generateVersionCode()
+        versionName generateVersionName()
+        setProperty("archivesBaseName", "taghche $versionName")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources false
+            debuggable false
+            jniDebuggable true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -35,6 +56,24 @@ android {
         jvmTarget = '1.8'
     }
 
+}
+
+@SuppressWarnings('GrMethodMayBeStatic')
+private Integer generateVersionCode() {
+    return ext.minimumSdkVersion * 10000000 + ext.versionMajor * 10000 + ext.versionMinor * 100 + ext.versionPatch
+}
+
+@SuppressWarnings('GrMethodMayBeStatic')
+private String generateVersionName() {
+    String versionName = "${ext.versionMajor}.${ext.versionMinor}.${ext.versionPatch}"
+    if (ext.versionClassifier == null && ext.isSnapshot) {
+        ext.versionClassifier = "SNAPSHOT"
+    }
+
+    if (ext.versionClassifier != null) {
+        versionName += "-" + ext.versionClassifier
+    }
+    return versionName
 }
 
 dependencies {
