@@ -8,5 +8,6 @@ import timber.log.Timber
 class DigitoonApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+
     }
 }

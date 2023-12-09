@@ -3,7 +3,7 @@ package com.digitoon.task.data.network.dto.response
 
 import com.google.gson.annotations.SerializedName
 
-data class MovieRespone(
+data class MovieResponse(
     @SerializedName("Actors")
     val actors: String,
     @SerializedName("Awards")
