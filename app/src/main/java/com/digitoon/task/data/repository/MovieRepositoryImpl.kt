@@ -4,9 +4,7 @@ import com.digitoon.task.data.data_source.LocalMovieDataSource
 import com.digitoon.task.data.data_source.RemoteMovieDataSource
 import com.digitoon.task.data.db.entity.MovieLocal
 import com.digitoon.task.data.network.SafeApiRequest
-import com.digitoon.task.data.network.dto.response.MovieListResponse
 import kotlinx.coroutines.flow.Flow
-import com.digitoon.task.data.network.Result
 import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
 import javax.inject.Inject

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">DigitonTask</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="movie_card_transition_name">book_item_card_%1$s</string>
+    <string name="movie_details_transition_name">book_details_transition</string>
 </resources>
